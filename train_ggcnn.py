@@ -259,7 +259,10 @@ def run():
         # Save best performing network
         iou = test_results['correct'] / (test_results['correct'] + test_results['failed'])
         if iou > best_iou or epoch == 0 or (epoch % 10) == 0:
-            torch.save(net, os.path.join(save_folder, 'epoch_%02d_iou_%0.2f' % (epoch, iou)))
+            file_name = os.path.join(save_folder, 'epoch_%02d_iou_%0.2f' % (epoch, iou))
+            sys_cmd = 'touch ' + file_name
+            os.system(sys_cmd)
+            torch.save(net, file_name)
             best_iou = iou
 
 
