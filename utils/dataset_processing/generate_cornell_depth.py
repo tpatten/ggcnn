@@ -3,7 +3,8 @@ import os
 import numpy as np
 from imageio import imsave
 import argparse
-from utils.dataset_processing.image import DepthImage
+#from utils.dataset_processing.image import DepthImage
+from image import DepthImage
 
 
 if __name__ == '__main__':
@@ -11,7 +12,11 @@ if __name__ == '__main__':
     parser.add_argument('path', type=str, help='Path to Cornell Grasping Dataset')
     args = parser.parse_args()
 
-    pcds = glob.glob(os.path.join(args.path, '*', 'pcd*[0-9].txt'))
+    os.chdir(args.path)
+    pcds = glob.glob("pcd*[0-9].txt")
+    pcds = [args.path + s for s in pcds]
+    
+    #pcds = glob.glob(os.path.join(args.path, '*', 'pcd*[0-9].txt'))
     pcds.sort()
 
     for pcd in pcds:

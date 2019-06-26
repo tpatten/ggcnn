@@ -19,7 +19,10 @@ class CornellDataset(GraspDatasetBase):
         """
         super(CornellDataset, self).__init__(**kwargs)
 
-        graspf = glob.glob(os.path.join(file_path, '*', 'pcd*cpos.txt'))
+        #graspf = glob.glob(os.path.join(file_path, '*', 'pcd*cpos.txt'))
+        os.chdir(file_path)
+        graspf = glob.glob("pcd*cpos.txt")
+        graspf = [file_path + s for s in graspf]
         graspf.sort()
         l = len(graspf)
         if l == 0:
