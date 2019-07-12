@@ -9,7 +9,7 @@ strides = [3, 2, 2, 2, 2, 3]
 class GGCNN(nn.Module):
     """
     GG-CNN
-    Equivalient to the Keras Model used in the RSS Paper (https://arxiv.org/abs/1804.05172)
+    Equivalent to the Keras Model used in the RSS Paper (https://arxiv.org/abs/1804.05172)
     """
     def __init__(self, input_channels=1):
         super().__init__()

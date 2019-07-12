@@ -43,7 +43,9 @@ def plot_output(rgb_img, depth_img, grasp_q_img, grasp_angle_img, no_grasps=1, g
     ax.set_title('Angle')
     ax.axis('off')
     plt.colorbar(plot)
-    plt.show()
+    #plt.show()
+    plt.savefig('/container/Data/ggcnn_output.png')
+    input("Press Enter to continue...")
 
 
 def calculate_iou_match(grasp_q, grasp_angle, ground_truth_bbs, no_grasps=1, grasp_width=None):

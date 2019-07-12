@@ -52,7 +52,7 @@ if __name__ == '__main__':
     # Load Dataset
     logging.info('Loading {} Dataset...'.format(args.dataset.title()))
     Dataset = get_dataset(args.dataset)
-    test_dataset = Dataset(args.dataset_path, start=args.split, end=1.0, ds_rotate=args.ds_rotate,
+    test_dataset = Dataset(args.dataset_path, start=args.split, end=1.0, ds_rotate=args.ds_rotate, crop=True,
                            random_rotate=args.augment, random_zoom=args.augment,
                            include_depth=args.use_depth, include_rgb=args.use_rgb)
     test_data = torch.utils.data.DataLoader(

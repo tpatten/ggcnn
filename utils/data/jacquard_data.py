@@ -9,7 +9,7 @@ class JacquardDataset(GraspDatasetBase):
     """
     Dataset wrapper for the Jacquard dataset.
     """
-    def __init__(self, file_path, start=0.0, end=1.0, ds_rotate=0, **kwargs):
+    def __init__(self, file_path, start=0.0, end=1.0, ds_rotate=0, crop=True, **kwargs):
         """
         :param file_path: Jacquard Dataset directory.
         :param start: If splitting the dataset, start at this fraction [0,1]
@@ -35,6 +35,7 @@ class JacquardDataset(GraspDatasetBase):
         self.grasp_files = graspf[int(l*start):int(l*end)]
         self.depth_files = depthf[int(l*start):int(l*end)]
         self.rgb_files = rgbf[int(l*start):int(l*end)]
+        self.crop = crop
 
     def get_gtbb(self, idx, rot=0, zoom=1.0):
         gtbbs = grasp.GraspRectangles.load_from_jacquard_file(self.grasp_files[idx], scale=self.output_size / 1024.0)
