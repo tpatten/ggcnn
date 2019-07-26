@@ -1,6 +1,20 @@
+## Pull the docker image
+
 docker pull tpatten/ggcnn:latest
+
+## Start and enter the docker container
+
 xhost +
 nvidia-docker run -it -v /tmp/.X11-unix:/tmp/.X11-unix -v /home/tpatten:/container -e DISPLAY=$DISPLAY --env QT_X11_NO_MITSHM=1 tpatten/ggcnn:latest
+
+OR IF THE CONTAINER ALREADY EXISTS
+
+docker container start [container-id]
+docker exec -it [container-id] bash
+
+## Run the test
+
+cd /container/Code/ggcnn
 
 python3.6 eval_ggcnn.py --network=/container/Code/ggcnn/output/models/190625_0133_training_example/epoch_27_iou_0.73 --dataset=cornell --dataset-path=/container/Data/CornellGraspDataset/ --num-workers=1 --vis
 
@@ -8,4 +22,12 @@ OR
 
 python3.6 test_ggcnn.py --network=/container/Code/ggcnn/output/models/190625_0133_training_example/epoch_27_iou_0.73 --num-workers=1 --vis
 
+OR IF IN THE ROS VERSION
+
+cd /container/contaienr_catkin_ws/src/ggcnn_ros
+
+python scripts/test_ggcnn.py
+
+
 ## Open the file /home/tpatten/Data/ggcnn_output.png ##
+## Open the file <path to code>/output/ggcnn_output.png ##
